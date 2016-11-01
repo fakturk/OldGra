@@ -11,7 +11,7 @@ import android.view.View;
  * Created by fakturk on 24/10/2016.
  */
 
-public class ArrowView extends View
+public class AccGraDiffView extends View
 {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint paintRed = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -27,7 +27,7 @@ public class ArrowView extends View
 
 
 
-    public ArrowView(Context context)
+    public AccGraDiffView(Context context)
     {
 
         super(context);
@@ -35,7 +35,7 @@ public class ArrowView extends View
         init();
 
     }
-    public ArrowView(Context context, AttributeSet attrs, int defStyle)
+    public AccGraDiffView(Context context, AttributeSet attrs, int defStyle)
     {
 
         super(context, attrs, defStyle);
@@ -44,7 +44,7 @@ public class ArrowView extends View
         init();
 
     }
-    public ArrowView(Context context, AttributeSet attrs)
+    public AccGraDiffView(Context context, AttributeSet attrs)
     {
 
         super(context, attrs);

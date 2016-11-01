@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     DynamicAcceleration dynamic;
 
-    ArrowView arrowView;
+    ArrowView arrowView ;
+    AccView accView;
+    AccGraDiffView accGraDiffView;
+    GyrView gyrView;
 //    SurfaceHolder surfaceHolder;
 
 
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         arrowView = (ArrowView) findViewById(R.id.arrowView);
+        accView = (AccView) findViewById(R.id.accView);
+        accGraDiffView = (AccGraDiffView) findViewById(R.id.accGraDiffView);
+        gyrView = (GyrView) findViewById(R.id.gyrView);
 //        surfaceHolder = arrowView.getHolder();
 //        surfaceHolder.addCallback(arrowView);
 
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         start = false;
 
         arrowView.setLine(100,100,100);
+        accView.setLine(200,200,200);
 
 
 
@@ -120,7 +127,11 @@ public class MainActivity extends AppCompatActivity {
                     for (int j = 0; j < 3; j++) {
                         gravity[j] = dynamicAcc[j+9];
                     }
-                    arrowView.setLine((-1)*gravity[0]*20,gravity[1]*20,gravity[2]*20);
+                    int lS = 20; // size coefficient of the line
+                    arrowView.setLine((-1)*gravity[0]*lS,gravity[1]*lS,gravity[2]*lS);
+                    accView.setLine((-1)*acc[0]*lS,acc[1]*lS, acc[2]*lS);
+                    accGraDiffView.setLine((-1)*acc[0]*lS - (-1)*gravity[0]*lS,acc[1]*lS - gravity[1]*lS, acc[2]*lS - gravity[2]*lS);
+                    gyrView.setLine(gyr[1]*lS,gyr[0]*lS, -1*gyr[2]*lS);
                     textProcessed =
                             "Acc : "+    df.format(dynamicAcc[0])+", "+df.format(dynamicAcc[1])+", "+df.format(dynamicAcc[2])+"\n"
                                     +"Vel : "+    df.format(dynamicAcc[3])+", "+df.format(dynamicAcc[4])+", "+df.format(dynamicAcc[5])+"\n"

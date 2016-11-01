@@ -28,15 +28,63 @@
         android:layout_alignParentTop="true"
         android:text="GRAVITY" />
 
-    <com.unist.netlab.fakturk.oldgra.ArrowView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/arrowView"
-        android:layout_below="@+id/tv_gravity"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/buttonStart"
-        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttonStart">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="224dp"
+            android:layout_above="@+id/buttonStart"
+            android:layout_below="@+id/tv_gravity">
+
+            <com.unist.netlab.fakturk.oldgra.AccView
+                android:layout_width="182dp"
+                android:layout_height="221dp"
+                android:id="@+id/accView"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/buttonStart"
+                />
+
+            <com.unist.netlab.fakturk.oldgra.ArrowView
+            android:layout_width="wrap_content"
+            android:layout_height="221dp"
+            android:id="@+id/arrowView"
+            android:layout_below="@+id/tv_gravity"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/buttonStart"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.unist.netlab.fakturk.oldgra.AccGraDiffView
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:id="@+id/accGraDiffView"
+                android:layout_below="@+id/tv_gravity"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/buttonStart"
+                />
+
+            <com.unist.netlab.fakturk.oldgra.GyrView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/gyrView"
+                android:layout_below="@+id/tv_gravity"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/buttonStart"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
