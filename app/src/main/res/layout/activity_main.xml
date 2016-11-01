@@ -12,14 +12,6 @@
                 tools:context="com.unist.netlab.fakturk.oldgra.MainActivity">
 
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:text="Start" />
-
     <TextView
         android:id="@+id/tv_gravity"
         android:layout_width="wrap_content"
@@ -32,56 +24,121 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/buttonStart">
+        android:layout_above="@+id/buttonGra"
+        android:id="@+id/linearLayVer"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="224dp"
-            android:layout_above="@+id/buttonStart"
-            android:layout_below="@+id/tv_gravity">
-
-            <com.unist.netlab.fakturk.oldgra.AccView
-                android:layout_width="182dp"
-                android:layout_height="221dp"
-                android:id="@+id/accView"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/buttonStart"
-                />
+            android:layout_height="212dp"
+            android:layout_above="@+id/buttonGra"
+            android:layout_below="@+id/tv_gravity"
+            android:id="@+id/linearLayHor1">
 
             <com.unist.netlab.fakturk.oldgra.ArrowView
-            android:layout_width="wrap_content"
-            android:layout_height="221dp"
+            android:layout_width="170dp"
+            android:layout_height="210dp"
             android:id="@+id/arrowView"
             android:layout_below="@+id/tv_gravity"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/buttonStart"
+            android:layout_above="@+id/buttonGra"
             />
+
+            <com.unist.netlab.fakturk.oldgra.AccView
+                android:layout_width="170dp"
+                android:layout_height="210dp"
+                android:id="@+id/accView"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/buttonGra"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="208dp"
+            android:id="@+id/linearLayHor2">
 
             <com.unist.netlab.fakturk.oldgra.AccGraDiffView
-                android:layout_width="179dp"
-                android:layout_height="match_parent"
+                android:layout_width="170dp"
+                android:layout_height="210dp"
                 android:id="@+id/accGraDiffView"
                 android:layout_below="@+id/tv_gravity"
                 android:layout_alignParentStart="true"
-                android:layout_above="@+id/buttonStart"
+                android:layout_above="@+id/buttonGra"
                 />
 
             <com.unist.netlab.fakturk.oldgra.GyrView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="170dp"
+                android:layout_height="210dp"
                 android:id="@+id/gyrView"
                 android:layout_below="@+id/tv_gravity"
                 android:layout_alignParentStart="true"
-                android:layout_above="@+id/buttonStart"
+                android:layout_above="@+id/buttonGra"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/buttonStart"
+            android:layout_marginStart="11dp"
+            android:layout_below="@+id/linearLayVer"
+            android:id="@+id/linearLayHor3">
+
+            <Button
+                android:id="@+id/buttonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:text="Start"
+                android:layout_below="@+id/linearLayVer"
+
+                android:layout_weight="1"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/buttonGra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GRA"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/buttonStart"
+                android:layout_weight="1"/>
+
+            <Button
+                android:text="ACC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/buttonGra"
+                android:id="@+id/buttonAcc"
+                android:layout_weight="1"/>
+
+            <Button
+                android:text="LINEAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/buttonAcc"
+                android:id="@+id/buttonAccGraDiff"
+                android:layout_weight="1"
+                android:textSize="10sp"/>
+
+            <Button
+                android:text="GYR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/buttonAcc"
+
+                android:id="@+id/buttonGyr"
+                android:layout_weight="1"/>
         </LinearLayout>
 
     </LinearLayout>

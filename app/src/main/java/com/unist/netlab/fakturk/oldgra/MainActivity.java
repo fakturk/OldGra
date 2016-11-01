@@ -10,6 +10,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv_gravity;
     Intent i;
-    Button buttonStart;
+    Button buttonStart, buttonGra, buttonAcc, buttonLinear, buttonGyr ;
 
     float[] acc, gyr, oldAcc, oldGyr, gravity, dynamicAcc;
     String acc_text, textProcessed;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     AccView accView;
     AccGraDiffView accGraDiffView;
     GyrView gyrView;
+    LinearLayout linearLayoutHor1, linearLayoutHor2;
 //    SurfaceHolder surfaceHolder;
 
 
@@ -45,12 +47,17 @@ public class MainActivity extends AppCompatActivity {
         accView = (AccView) findViewById(R.id.accView);
         accGraDiffView = (AccGraDiffView) findViewById(R.id.accGraDiffView);
         gyrView = (GyrView) findViewById(R.id.gyrView);
-//        surfaceHolder = arrowView.getHolder();
-//        surfaceHolder.addCallback(arrowView);
+
+        linearLayoutHor1 = (LinearLayout) findViewById(R.id.linearLayHor1);
+        linearLayoutHor2 = (LinearLayout) findViewById(R.id.linearLayHor2);
 
 
         tv_gravity = (TextView) findViewById(R.id.tv_gravity);
         buttonStart = (Button) findViewById(R.id.buttonStart);
+        buttonGra = (Button) findViewById(R.id.buttonGra);
+        buttonAcc = (Button) findViewById(R.id.buttonAcc);
+        buttonLinear = (Button) findViewById(R.id.buttonAccGraDiff);
+        buttonGyr = (Button) findViewById(R.id.buttonGyr);
         i = new Intent(this, SensorService.class);
 
         acc = new float[3];
@@ -161,6 +168,150 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        buttonGra.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (buttonGra.getText().equals("GRA")) {
+                    buttonGra.setText("gra");
+                    System.out.println("GRA");
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*3/2));
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*1/2));
+                    linearLayoutHor1.removeView(accView);
+                    linearLayoutHor2.addView(accView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*3/2,arrowView.getHeight()*3/2));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
+
+
+                } else {
+                    buttonGra.setText("GRA");
+                    System.out.println("gra");
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2/3));
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2));
+                    linearLayoutHor2.removeView(accView);
+                    linearLayoutHor1.addView(accView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2/3,arrowView.getHeight()*2/3));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+
+
+
+                }
+            }
+        });
+
+        buttonAcc.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (buttonAcc.getText().equals("ACC")) {
+                    buttonAcc.setText("acc");
+                    System.out.println("ACC");
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*3/2));
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*1/2));
+                    linearLayoutHor1.removeView(arrowView);
+                    linearLayoutHor2.addView(arrowView);
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*3/2,accView.getHeight()*3/2));
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*1/2,arrowView.getHeight()*1/2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
+
+
+                } else {
+                    buttonAcc.setText("ACC");
+                    System.out.println("acc");
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2/3));
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2));
+                    linearLayoutHor2.removeView(arrowView);
+                    linearLayoutHor1.addView(arrowView);
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2/3,accView.getHeight()*2/3));
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+
+
+
+                }
+            }
+        });
+
+        buttonLinear.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (buttonLinear.getText().equals("LINEAR")) {
+                    buttonLinear.setText("linear");
+                    System.out.println("LINEAR");
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*3/2));
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*1/2));
+                    linearLayoutHor2.removeView(gyrView);
+                    linearLayoutHor1.addView(gyrView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*1/2,arrowView.getHeight()*1/2));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*3/2,accGraDiffView.getHeight()*3/2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
+
+
+                } else {
+                    buttonLinear.setText("LINEAR");
+                    System.out.println("linear");
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2/3));
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2));
+                    linearLayoutHor1.removeView(gyrView);
+                    linearLayoutHor2.addView(gyrView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2/3,accGraDiffView.getHeight()*2/3));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+
+
+
+                }
+            }
+        });
+
+        buttonGyr.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (buttonGyr.getText().equals("GYR")) {
+                    buttonGyr.setText("gyr");
+                    System.out.println("GYR");
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*3/2));
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*1/2));
+                    linearLayoutHor2.removeView(accGraDiffView);
+                    linearLayoutHor1.addView(accGraDiffView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*1/2,arrowView.getHeight()*1/2));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*3/2,gyrView.getHeight()*3/2));
+
+
+                } else {
+                    buttonGyr.setText("GYR");
+                    System.out.println("gyr");
+                    linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2/3));
+                    linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2));
+                    linearLayoutHor1.removeView(accGraDiffView);
+                    linearLayoutHor2.addView(accGraDiffView);
+                    arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
+                    accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
+                    accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
+                    gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2/3,gyrView.getHeight()*2/3));
+
+
+
+                }
+            }
+        });
+
     }
 
 
