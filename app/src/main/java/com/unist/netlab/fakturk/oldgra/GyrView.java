@@ -117,7 +117,7 @@ public class GyrView extends View
 
 
 
-        System.out.println("ondraw: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
+        System.out.println("ondraw gyr: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
 
         if (Math.abs(lineFinishX)>Math.abs(lineFinishY))
         {

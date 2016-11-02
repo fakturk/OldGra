@@ -100,7 +100,8 @@
                 android:layout_below="@+id/linearLayVer"
 
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textAllCaps="false"/>
 
             <Button
                 android:id="@+id/buttonGra"
@@ -109,7 +110,8 @@
                 android:text="GRA"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/buttonStart"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAllCaps="false"/>
 
             <Button
                 android:text="ACC"
@@ -118,7 +120,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/buttonGra"
                 android:id="@+id/buttonAcc"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAllCaps="false"/>
 
             <Button
                 android:text="LINEAR"
@@ -128,7 +131,8 @@
                 android:layout_toEndOf="@+id/buttonAcc"
                 android:id="@+id/buttonAccGraDiff"
                 android:layout_weight="1"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                android:textAllCaps="false"/>
 
             <Button
                 android:text="GYR"
@@ -138,7 +142,8 @@
                 android:layout_toEndOf="@+id/buttonAcc"
 
                 android:id="@+id/buttonGyr"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAllCaps="false"/>
         </LinearLayout>
 
     </LinearLayout>

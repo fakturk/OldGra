@@ -174,14 +174,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 if (buttonGra.getText().equals("GRA")) {
-                    buttonGra.setText("gra");
+//                    buttonGra.setText("gra");
                     System.out.println("GRA");
+                    if (buttonAcc.getText().equals("acc"))
+                    {
+                        makeSmaller("ACC");
+                    }
+                    if (buttonLinear.getText().equals("linear"))
+                    {
+                        makeSmaller("LINEAR");
+                    }
+                    if (buttonGyr.getText().equals("gyr"))
+                    {
+                        makeSmaller("GYR");
+                    }
+                    accView.invalidate();
+                    arrowView.invalidate();
+                    gyrView.invalidate();
+                    accGraDiffView.invalidate();
                     makeBigger("GRA");
 
 
 
                 } else {
-                    buttonGra.setText("GRA");
+//                    buttonGra.setText("GRA");
                     System.out.println("gra");
                     makeSmaller("GRA");
 
@@ -198,13 +214,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 if (buttonAcc.getText().equals("ACC")) {
-                    buttonAcc.setText("acc");
+
                     System.out.println("ACC");
-                    makeBigger("ACC");
+                    if (buttonGra.getText().equals("gra"))
+                    {
+                        makeSmaller("GRA");
+                    }
+                    if (buttonLinear.getText().equals("linear"))
+                    {
+                        makeSmaller("LINEAR");
+                    }
+                    if (buttonGyr.getText().equals("gyr"))
+                    {
+                        makeSmaller("GYR");
+                    }
+
+//                    makeBigger("ACC");
 
 
                 } else {
-                    buttonAcc.setText("ACC");
+
                     System.out.println("acc");
                     makeSmaller("ACC");
 
@@ -221,14 +250,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 if (buttonLinear.getText().equals("LINEAR")) {
-                    buttonLinear.setText("linear");
+//                    buttonLinear.setText("linear");
                     System.out.println("LINEAR");
+                    if (buttonAcc.getText().equals("acc"))
+                    {
+                        makeSmaller("ACC");
+                    }
+                    if (buttonGra.getText().equals("gra"))
+                    {
+                        makeSmaller("GRA");
+                    }
+                    if (buttonGyr.getText().equals("gyr"))
+                    {
+                        makeSmaller("GYR");
+                    }
+                    accView.invalidate();
+                    arrowView.invalidate();
+                    gyrView.invalidate();
+                    accGraDiffView.invalidate();
                     makeBigger("LINEAR");
 
 
 
                 } else {
-                    buttonLinear.setText("LINEAR");
+//                    buttonLinear.setText("LINEAR");
                     System.out.println("linear");
                     makeSmaller("LINEAR");
 
@@ -245,13 +290,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 if (buttonGyr.getText().equals("GYR")) {
-                    buttonGyr.setText("gyr");
+//                    buttonGyr.setText("gyr");
                     System.out.println("GYR");
+                    if (buttonAcc.getText().equals("acc"))
+                    {
+                        makeSmaller("ACC");
+                    }
+                    if (buttonLinear.getText().equals("linear"))
+                    {
+                        makeSmaller("LINEAR");
+                    }
+                    if (buttonGra.getText().equals("gra"))
+                    {
+                        makeSmaller("GRA");
+                    }
+
                     makeBigger("GYR");
 
 
                 } else {
-                    buttonGyr.setText("GYR");
+//                    buttonGyr.setText("GYR");
                     System.out.println("gyr");
                     makeSmaller("GYR");
 
@@ -264,10 +322,15 @@ public class MainActivity extends AppCompatActivity {
     }
     void makeBigger(String button)
     {
+
+        System.out.println("make bigger "+button);
         if (button=="GRA")
         {
+            buttonGra.setText("gra");
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*3/2));
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*1/2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor1.removeView(accView);
             linearLayoutHor2.addView(accView);
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*3/2,arrowView.getHeight()*3/2));
@@ -277,8 +340,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (button=="ACC")
         {
+            buttonAcc.setText("acc");
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*3/2));
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*1/2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor1.removeView(arrowView);
             linearLayoutHor2.addView(arrowView);
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*3/2,accView.getHeight()*3/2));
@@ -289,8 +355,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (button=="LINEAR")
         {
+            buttonLinear.setText("linear");
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*3/2));
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*1/2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor2.removeView(gyrView);
             linearLayoutHor1.addView(gyrView);
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*1/2,arrowView.getHeight()*1/2));
@@ -300,8 +369,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (button=="GYR")
         {
+            buttonGyr.setText("gyr");
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*3/2));
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*1/2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor2.removeView(accGraDiffView);
             linearLayoutHor1.addView(accGraDiffView);
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*1/2,arrowView.getHeight()*1/2));
@@ -310,25 +382,41 @@ public class MainActivity extends AppCompatActivity {
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*3/2,gyrView.getHeight()*3/2));
 
         }
+
     }
 
     void makeSmaller(String button)
     {
+        System.out.println("make smaller "+button);
         if (button=="GRA")
         {
+            buttonGra.setText("GRA");
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2/3));
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor2.removeView(accView);
             linearLayoutHor1.addView(accView);
+            System.out.println("gra before "+arrowView.getWidth()+", "+arrowView.getHeight());
+            System.out.println("acc before "+accView.getWidth()+", "+accView.getHeight());
+            System.out.println("linear before "+accGraDiffView.getWidth()+", "+accGraDiffView.getHeight());
+            System.out.println("gyr before "+gyrView.getWidth()+", "+gyrView.getHeight());
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2/3,arrowView.getHeight()*2/3));
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+            System.out.println("gra agter "+arrowView.getWidth()+", "+arrowView.getHeight());
+            System.out.println("acc after "+accView.getWidth()+", "+accView.getHeight());
+            System.out.println("linear after "+accGraDiffView.getWidth()+", "+accGraDiffView.getHeight());
+            System.out.println("gyr after "+gyrView.getWidth()+", "+gyrView.getHeight());
         }
         if (button=="ACC")
         {
+            buttonAcc.setText("ACC");
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2/3));
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor2.removeView(arrowView);
             linearLayoutHor1.addView(arrowView);
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2/3,accView.getHeight()*2/3));
@@ -338,8 +426,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (button=="LINEAR")
         {
+            buttonLinear.setText("LINEAR");
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2/3));
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor1.removeView(gyrView);
             linearLayoutHor2.addView(gyrView);
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
@@ -349,8 +440,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (button=="GYR")
         {
+            buttonGyr.setText("GYR");
             linearLayoutHor2.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor2.getWidth(),linearLayoutHor2.getHeight()*2/3));
             linearLayoutHor1.setLayoutParams(new LinearLayout.LayoutParams(linearLayoutHor1.getWidth(),linearLayoutHor1.getHeight()*2));
+            System.out.println("linear layout 1 params:"+linearLayoutHor1.getWidth()+", "+linearLayoutHor1.getHeight());
+            System.out.println("linear layout 2 params:"+linearLayoutHor2.getWidth()+", "+linearLayoutHor2.getHeight());
             linearLayoutHor1.removeView(accGraDiffView);
             linearLayoutHor2.addView(accGraDiffView);
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
@@ -359,6 +453,7 @@ public class MainActivity extends AppCompatActivity {
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2/3,gyrView.getHeight()*2/3));
 
         }
+
     }
 
 

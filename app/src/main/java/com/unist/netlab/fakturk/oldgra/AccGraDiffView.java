@@ -117,7 +117,7 @@ public class AccGraDiffView extends View
 
 
 
-        System.out.println("ondraw: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
+        System.out.println("ondraw linear: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
 
         if (Math.abs(lineFinishX)>Math.abs(lineFinishY))
         {
