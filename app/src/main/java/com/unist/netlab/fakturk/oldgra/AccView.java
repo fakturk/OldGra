@@ -23,8 +23,7 @@ public class AccView extends View
 
     float lineStartX, lineStartY, lineFinishX, lineFinishY, lineZStartX, lineZStartY, lineZFinishX, lineZFinishY;
     float accXFinish, accYFinish, accZFinish;
-
-
+    private float coefficient;
 
 
     public AccView(Context context)
@@ -59,9 +58,9 @@ public class AccView extends View
     protected void onDraw(Canvas c)
     {
         super.onDraw(c);
-        lineStartX= this.getWidth()/2;
-        lineStartY = this.getHeight()/2;
-        lineZStartX = this.getWidth()-50;
+        lineStartX= coefficient* this.getWidth()/2;
+        lineStartY = coefficient*this.getHeight()/2;
+        lineZStartX =coefficient* this.getWidth()-50;
         lineZStartY = lineStartY;
         lineZFinishX = 0;
 
@@ -139,9 +138,9 @@ public class AccView extends View
     {
 
 
-        this.lineFinishX = lineFinishX;
-        this.lineFinishY = lineFinishY;
-        this.lineZFinishY = lineFinishZ;
+        this.lineFinishX = coefficient*lineFinishX;
+        this.lineFinishY = coefficient*lineFinishY;
+        this.lineZFinishY = coefficient*lineFinishZ;
         System.out.println("setLine: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
         invalidate();
 
@@ -154,6 +153,16 @@ public class AccView extends View
         this.accYFinish = accYFinish;
         this.accZFinish = accZFinish;
     }
+    void setCoefficient(float coefficient)
+    {
+        this.coefficient = coefficient;
+    }
+    public float getCoefficient()
+    {
+
+        return coefficient;
+    }
+
 
     void init()
     {
@@ -193,6 +202,7 @@ public class AccView extends View
         lineStartY=0;
         lineFinishX=0;
         lineFinishY=0;
+        coefficient = 1;
 
     }
 

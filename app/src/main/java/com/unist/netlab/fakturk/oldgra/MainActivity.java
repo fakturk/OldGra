@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     DynamicAcceleration dynamic;
 
     ArrowView arrowView ;
-    AccView accView;
-    AccGraDiffView accGraDiffView;
-    GyrView gyrView;
+    ArrowView accView;
+    ArrowView accGraDiffView;
+    ArrowView gyrView;
     LinearLayout linearLayoutHor1, linearLayoutHor2;
 //    SurfaceHolder surfaceHolder;
 
@@ -44,9 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         arrowView = (ArrowView) findViewById(R.id.arrowView);
-        accView = (AccView) findViewById(R.id.accView);
-        accGraDiffView = (AccGraDiffView) findViewById(R.id.accGraDiffView);
-        gyrView = (GyrView) findViewById(R.id.gyrView);
+        accView = (ArrowView) findViewById(R.id.accView);
+        accGraDiffView = (ArrowView) findViewById(R.id.accGraDiffView);
+        gyrView = (ArrowView) findViewById(R.id.gyrView);
+
+        arrowView.setType("Gravity");
+        accView.setType("Acc");
+        accGraDiffView.setType("Lnr Acc");
+        gyrView.setType("Gyr");
 
         linearLayoutHor1 = (LinearLayout) findViewById(R.id.linearLayHor1);
         linearLayoutHor2 = (LinearLayout) findViewById(R.id.linearLayHor2);
@@ -71,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         start = false;
 
-        arrowView.setLine(100,100,100);
-        accView.setLine(200,200,200);
+        arrowView.setLine(0,100,0);
+        accView.setLine(0,100,0);
 
 
 
@@ -146,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                                     +"Gra : "+   df.format(dynamicAcc[9])+", "+df.format(dynamicAcc[10])+", "+df.format(dynamicAcc[11])+"\n"
                                     +"gyr : "+    df.format(gyr[0])+", "+df.format(gyr[1])+", "+df.format(gyr[2])+"\n"
                     ;
-                    tv_gravity.setText(textProcessed);
+//                    tv_gravity.setText(textProcessed);
 
                 }
             }
@@ -342,6 +347,11 @@ public class MainActivity extends AppCompatActivity {
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*3/2);
+            accView.setCoefficient(accView.getCoefficient()*1/2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*1/2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*1/2);
         }
         if (button=="ACC")
         {
@@ -356,6 +366,11 @@ public class MainActivity extends AppCompatActivity {
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
 
+            arrowView.setCoefficient(arrowView.getCoefficient()*1/2);
+            accView.setCoefficient(accView.getCoefficient()*3/2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*1/2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*1/2);
+
         }
         if (button=="LINEAR")
         {
@@ -369,6 +384,11 @@ public class MainActivity extends AppCompatActivity {
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*3/2,accGraDiffView.getHeight()*3/2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*1/2,gyrView.getHeight()*1/2));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*1/2);
+            accView.setCoefficient(accView.getCoefficient()*1/2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*3/2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*1/2);
         }
         if (button=="GYR")
         {
@@ -382,6 +402,11 @@ public class MainActivity extends AppCompatActivity {
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*1/2,accView.getHeight()*1/2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*1/2,accGraDiffView.getHeight()*1/2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*3/2,gyrView.getHeight()*3/2));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*1/2);
+            accView.setCoefficient(accView.getCoefficient()*1/2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*1/2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*3/2);
 
         }
 
@@ -404,6 +429,11 @@ public class MainActivity extends AppCompatActivity {
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
 
+            arrowView.setCoefficient(arrowView.getCoefficient()*2/3);
+            accView.setCoefficient(accView.getCoefficient()*2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*2);
+
         }
         if (button=="ACC")
         {
@@ -417,6 +447,12 @@ public class MainActivity extends AppCompatActivity {
             arrowView.setLayoutParams(new LinearLayout.LayoutParams(arrowView.getWidth()*2,arrowView.getHeight()*2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*2);
+            accView.setCoefficient(accView.getCoefficient()*2/3);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*2);
+
         }
         if (button=="LINEAR")
         {
@@ -430,6 +466,12 @@ public class MainActivity extends AppCompatActivity {
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2/3,accGraDiffView.getHeight()*2/3));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2,gyrView.getHeight()*2));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*2);
+            accView.setCoefficient(accView.getCoefficient()*2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*2/3);
+            gyrView.setCoefficient(gyrView.getCoefficient()*2);
+
         }
         if (button=="GYR")
         {
@@ -443,6 +485,12 @@ public class MainActivity extends AppCompatActivity {
             accView.setLayoutParams(new LinearLayout.LayoutParams(accView.getWidth()*2,accView.getHeight()*2));
             accGraDiffView.setLayoutParams(new LinearLayout.LayoutParams(accGraDiffView.getWidth()*2,accGraDiffView.getHeight()*2));
             gyrView.setLayoutParams(new LinearLayout.LayoutParams(gyrView.getWidth()*2/3,gyrView.getHeight()*2/3));
+
+            arrowView.setCoefficient(arrowView.getCoefficient()*2);
+            accView.setCoefficient(accView.getCoefficient()*2);
+            accGraDiffView.setCoefficient(accGraDiffView.getCoefficient()*2);
+            gyrView.setCoefficient(gyrView.getCoefficient()*2/3);
+
 
         }
 

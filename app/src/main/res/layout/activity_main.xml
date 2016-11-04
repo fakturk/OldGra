@@ -45,7 +45,7 @@
             android:layout_above="@+id/buttonGra"
             />
 
-            <com.unist.netlab.fakturk.oldgra.AccView
+            <com.unist.netlab.fakturk.oldgra.ArrowView
                 android:layout_width="170dp"
                 android:layout_height="210dp"
                 android:id="@+id/accView"
@@ -61,7 +61,7 @@
             android:layout_height="208dp"
             android:id="@+id/linearLayHor2">
 
-            <com.unist.netlab.fakturk.oldgra.AccGraDiffView
+            <com.unist.netlab.fakturk.oldgra.ArrowView
                 android:layout_width="170dp"
                 android:layout_height="210dp"
                 android:id="@+id/accGraDiffView"
@@ -70,7 +70,7 @@
                 android:layout_above="@+id/buttonGra"
                 />
 
-            <com.unist.netlab.fakturk.oldgra.GyrView
+            <com.unist.netlab.fakturk.oldgra.ArrowView
                 android:layout_width="170dp"
                 android:layout_height="210dp"
                 android:id="@+id/gyrView"
