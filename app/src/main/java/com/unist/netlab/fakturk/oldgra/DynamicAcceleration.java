@@ -107,12 +107,21 @@ class DynamicAcceleration
 
     float[] gravityFromRotation(float[] gravity, float[] gyrDiff)
     {
-        float[] euler = eulerAngles(gyrDiff);
-        Gravity g = new Gravity();
-        Orientation orientation = new Orientation();
-        float[] newGravity = g.gravityAfterRotation(gravity, orientation.rotationFromEuler(euler));
+        if ((Math.abs(gyrDiff[0])+Math.abs(gyrDiff[1])+Math.abs(gyrDiff[2]))>0.1)
+        {
+            float[] euler = eulerAngles(gyrDiff);
+            Gravity g = new Gravity();
+            Orientation orientation = new Orientation();
+            float[] newGravity = g.gravityAfterRotation(gravity, orientation.rotationFromEuler(euler));
+            return newGravity;
 
-        return newGravity;
+        }
+        else
+        {
+            return gravity;
+        }
+
+
     }
 
     private float[] velocity(float[] oldVelocity, float[] dynAcc)

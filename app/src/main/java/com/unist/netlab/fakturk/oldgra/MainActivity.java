@@ -24,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
     Intent i;
     Button buttonStart, buttonGra, buttonAcc, buttonLinear, buttonGyr ;
 
-    float[] acc, gyr, oldAcc, oldGyr, gravity, dynamicAcc;
+    float[] acc, gyr, oldAcc, oldGyr, gravity, lpGravity, dynamicAcc, lpAcc;
     String acc_text, textProcessed;
     boolean start;
+    Filter filter;
 
     DynamicAcceleration dynamic;
 
@@ -70,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
         oldAcc = null;
         oldGyr = null;
         gravity = new float[3];
+        lpGravity = new float[3]; //low pass filtered gravity value
+        lpAcc = new float[3];
         dynamicAcc = null;
+
+        filter = new Filter();
 
         dynamic = new DynamicAcceleration();
 
@@ -121,21 +126,37 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                if (acc!=null && gyr!=null)
+                if (acc!=null && gyr!=null && start!=true)
                 {
                     start = true;
                     float accNorm = (float) Math.sqrt(Math.pow(acc[0],2)+Math.pow(acc[1],2)+Math.pow(acc[2],2));
                     for (int j = 0; j < 3; j++)
                     {
                         gravity[j] = acc[j]*(GRAVITY_EARTH/accNorm);
+                        System.arraycopy(gravity, 0, lpGravity, 0,gravity.length);
+                        System.arraycopy(acc, 0, lpAcc, 0,acc.length);
+
                     }
                 }
                 if (start)
                 {
+                    //if phone stable gravity = acc
+                    if ((Math.abs(gyr[0])+Math.abs(gyr[1])+Math.abs(gyr[2]))<0.1)
+                    {
+                        float accNorm = (float) Math.sqrt(Math.pow(acc[0],2)+Math.pow(acc[1],2)+Math.pow(acc[2],2));
+                        for (int j = 0; j < 3; j++)
+                        {
+                            gravity[j] = acc[j]*(GRAVITY_EARTH/accNorm);
+
+                        }
+                    }
 
                     dynamicAcc = dynamic.calculate(acc,oldAcc,gyr,oldGyr,gravity, dynamicAcc);
                     System.arraycopy(acc, 0, oldAcc, 0,acc.length);
                     System.arraycopy(gyr,0,oldGyr,0,gyr.length);
+
+                    lpGravity = filter.recursivelowPass(0.15f,gravity,lpGravity);
+                    lpAcc = filter.recursivelowPass(0.9f,acc,lpAcc);
                     for (int j = 0; j < 3; j++) {
                         gravity[j] = dynamicAcc[j+9];
                     }
