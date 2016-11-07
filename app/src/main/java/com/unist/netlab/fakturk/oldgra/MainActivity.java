@@ -99,29 +99,29 @@ public class MainActivity extends AppCompatActivity {
                 if (acc!=null && oldAcc==null)
                 {
                     oldAcc = new float[3];
-                    System.out.println("case acc!=null && oldAcc==null");
+//                    System.out.println("case acc!=null && oldAcc==null");
                     System.arraycopy(acc, 0, oldAcc, 0,acc.length);
 
                 }
                 if (gyr!=null && oldGyr==null)
                 {
                     oldGyr = new float[3];
-                    System.out.println("case gyr!=null && oldGyr==null");
+//                    System.out.println("case gyr!=null && oldGyr==null");
                     System.arraycopy(gyr,0,oldGyr,0,gyr.length);
 
                 }
                 if (acc==null && oldAcc!=null)
                 {
                     acc = new float[3];
-                    System.out.println("case acc==null");
+//                    System.out.println("case acc==null");
                     System.arraycopy(oldAcc, 0, acc, 0,oldAcc.length);
 
                 }
                 if (gyr==null && oldGyr!=null)
                 {
-                    gyr = new float[3];
-                    System.out.println("case gyr==null");
-                    System.arraycopy(oldGyr,0,gyr,0,oldGyr.length);
+                    gyr = new float[]{0,0,0};
+//                    System.out.println("case gyr==null");
+//                    System.arraycopy(oldGyr,0,gyr,0,oldGyr.length);
 
                 }
 
@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     accView.setLine((-1)*acc[0]*lS,acc[1]*lS, acc[2]*lS);
                     accGraDiffView.setLine((-1)*acc[0]*lS - (-1)*gravity[0]*lS,acc[1]*lS - gravity[1]*lS, acc[2]*lS - gravity[2]*lS);
                     gyrView.setLine(gyr[1]*lS,gyr[0]*lS, -1*gyr[2]*lS);
+                    System.out.println(acc[0]+", "+acc[1]+", "+acc[2]+", "+gyr[0]+", "+gyr[1]+", "+gyr[2]+", "+gravity[0]+", "+gravity[1]+", "+gravity[2]+", ");
                     textProcessed =
                             "Acc : "+    df.format(dynamicAcc[0])+", "+df.format(dynamicAcc[1])+", "+df.format(dynamicAcc[2])+"\n"
                                     +"Vel : "+    df.format(dynamicAcc[3])+", "+df.format(dynamicAcc[4])+", "+df.format(dynamicAcc[5])+"\n"
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if (buttonGra.getText().equals("GRA")) {
 //                    buttonGra.setText("gra");
-                    System.out.println("GRA");
+//                    System.out.println("GRA");
                     if (buttonAcc.getText().equals("acc"))
                     {
                         makeSmaller("ACC");
@@ -224,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 //                    buttonGra.setText("GRA");
-                    System.out.println("gra");
+//                    System.out.println("gra");
                     makeSmaller("GRA");
 
 
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if (buttonAcc.getText().equals("ACC")) {
 
-                    System.out.println("ACC");
+//                    System.out.println("ACC");
                     if (buttonGra.getText().equals("gra"))
                     {
                         makeSmaller("GRA");
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 
-                    System.out.println("acc");
+//                    System.out.println("acc");
                     makeSmaller("ACC");
 
 
@@ -280,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if (buttonLinear.getText().equals("LINEAR")) {
 //                    buttonLinear.setText("linear");
-                    System.out.println("LINEAR");
+//                    System.out.println("LINEAR");
                     if (buttonAcc.getText().equals("acc"))
                     {
                         makeSmaller("ACC");
@@ -303,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 //                    buttonLinear.setText("LINEAR");
-                    System.out.println("linear");
+//                    System.out.println("linear");
                     makeSmaller("LINEAR");
 
 
@@ -320,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if (buttonGyr.getText().equals("GYR")) {
 //                    buttonGyr.setText("gyr");
-                    System.out.println("GYR");
+//                    System.out.println("GYR");
                     if (buttonAcc.getText().equals("acc"))
                     {
                         makeSmaller("ACC");
@@ -342,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 //                    buttonGyr.setText("GYR");
-                    System.out.println("gyr");
+//                    System.out.println("gyr");
                     makeSmaller("GYR");
 
 
@@ -355,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
     void makeBigger(String button)
     {
 
-        System.out.println("make bigger "+button);
+//        System.out.println("make bigger "+button);
         if (button=="GRA")
         {
             buttonGra.setText("gra");
@@ -435,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
 
     void makeSmaller(String button)
     {
-        System.out.println("make smaller "+button);
+//        System.out.println("make smaller "+button);
         if (button=="GRA")
         {
             buttonGra.setText("GRA");

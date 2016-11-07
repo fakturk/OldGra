@@ -9,6 +9,7 @@ class DynamicAcceleration
 {
     private float[] oldAcc,oldGyr, dynAcc;
     private long timeInMillis;
+    float epsilon = 0.31f;
 
     DynamicAcceleration()
     {
@@ -76,15 +77,21 @@ class DynamicAcceleration
         {
             diffGyr[i] = (newGyr[i]-oldGyr[i]);
         }
-        return diffGyr;
+        return newGyr;
     }
 
     float[] eulerAngles(float[] gyrDiff)
     {
         float euler[] = new float[3];
-        for (int i = 0; i < 3; i++) {
-            euler[i] = gyrDiff[i] * timeInMillis;
+
+        float omegaMagnitude = (float) Math.sqrt(gyrDiff[0]*gyrDiff[0] + gyrDiff[1]*gyrDiff[1] + gyrDiff[2]*gyrDiff[2]);
+        if (omegaMagnitude>epsilon)
+        {
+            for (int i = 0; i < 3; i++) {
+                euler[i] = gyrDiff[i] * omegaMagnitude;
+            }
         }
+
         return euler;
     }
 
@@ -107,7 +114,7 @@ class DynamicAcceleration
 
     float[] gravityFromRotation(float[] gravity, float[] gyrDiff)
     {
-        if ((Math.abs(gyrDiff[0])+Math.abs(gyrDiff[1])+Math.abs(gyrDiff[2]))>0.1)
+        if ((Math.abs(gyrDiff[0])+Math.abs(gyrDiff[1])+Math.abs(gyrDiff[2]))>epsilon)
         {
             float[] euler = eulerAngles(gyrDiff);
             Gravity g = new Gravity();
@@ -157,7 +164,7 @@ class DynamicAcceleration
         float[] oldDynamicAcc = new float[]{0.0f, 0.0f, 0.0f};
         float[] oldVelocity = new float[]{0.0f, 0.0f, 0.0f};
         float[] oldDistance = new float[]{0.0f, 0.0f, 0.0f};
-        float[] newGra = gravityFromRotation(oldGra, gyrDiff(oldGyr,gyr));
+        float[] newGra = gravityFromRotation(oldGra, gyr);
 
         for (int i = 0; i < 3; i++) {
             oldDynamicAcc[i] = oldAccVelDisGra[i];

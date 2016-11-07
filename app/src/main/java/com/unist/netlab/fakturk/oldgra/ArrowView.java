@@ -128,7 +128,7 @@ public class ArrowView extends View
 
 
 
-        System.out.println("ondraw gra: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
+//        System.out.println("ondraw gra: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
 
         if (Math.abs(lineFinishX)>Math.abs(lineFinishY))
         {
@@ -153,10 +153,10 @@ public class ArrowView extends View
         this.lineFinishX = coefficient*lineFinishX;
         this.lineFinishY = coefficient*lineFinishY;
         this.lineZFinishY = coefficient*lineFinishZ;
-        System.out.println("setLine: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
+//        System.out.println("setLine: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
         invalidate();
 
-        System.out.println("setLine after invalidate: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
+//        System.out.println("setLine after invalidate: "+lineStartX+", "+lineStartY+", "+lineFinishX+", "+lineFinishY);
 
     }
     void setAccLine(float accXFinish, float accYFinish, float accZFinish)
