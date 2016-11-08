@@ -140,15 +140,25 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (start)
                 {
+                    float accNorm = (float) Math.sqrt(Math.pow(acc[0],2)+Math.pow(acc[1],2)+Math.pow(acc[2],2));
                     //if phone stable gravity = acc
-                    if ((Math.abs(gyr[0])+Math.abs(gyr[1])+Math.abs(gyr[2]))<0.1)
+                    if ((Math.abs(gyr[0])+Math.abs(gyr[1])+Math.abs(gyr[2]))<0.31 && Math.abs(accNorm - GRAVITY_EARTH)<0.31)
                     {
-                        float accNorm = (float) Math.sqrt(Math.pow(acc[0],2)+Math.pow(acc[1],2)+Math.pow(acc[2],2));
+
                         for (int j = 0; j < 3; j++)
                         {
                             gravity[j] = acc[j]*(GRAVITY_EARTH/accNorm);
 
                         }
+                    }
+                    // if not rotating
+                    else if ((Math.abs(gyr[0])+Math.abs(gyr[1])+Math.abs(gyr[2]))<0.31)
+                    {
+
+                    }
+                    else // not stable
+                    {
+
                     }
 
                     dynamicAcc = dynamic.calculate(acc,oldAcc,gyr,oldGyr,gravity, dynamicAcc);
@@ -160,20 +170,21 @@ public class MainActivity extends AppCompatActivity {
                     for (int j = 0; j < 3; j++) {
                         gravity[j] = dynamicAcc[j+9];
                     }
+
                     int lS = 20; // size coefficient of the line
                     arrowView.setLine((-1)*gravity[0]*lS,gravity[1]*lS,gravity[2]*lS);
                     accView.setLine((-1)*acc[0]*lS,acc[1]*lS, acc[2]*lS);
                     accGraDiffView.setLine((-1)*acc[0]*lS - (-1)*gravity[0]*lS,acc[1]*lS - gravity[1]*lS, acc[2]*lS - gravity[2]*lS);
                     gyrView.setLine(gyr[1]*lS,gyr[0]*lS, -1*gyr[2]*lS);
-                    System.out.println(acc[0]+", "+acc[1]+", "+acc[2]+", "+gyr[0]+", "+gyr[1]+", "+gyr[2]+", "+gravity[0]+", "+gravity[1]+", "+gravity[2]+", ");
-                    textProcessed =
-                            "Acc : "+    df.format(dynamicAcc[0])+", "+df.format(dynamicAcc[1])+", "+df.format(dynamicAcc[2])+"\n"
-                                    +"Vel : "+    df.format(dynamicAcc[3])+", "+df.format(dynamicAcc[4])+", "+df.format(dynamicAcc[5])+"\n"
-                                    +"Dist : "+   df.format(dynamicAcc[6])+", "+df.format(dynamicAcc[7])+", "+df.format(dynamicAcc[8])+"\n"
-                                    +"Gra : "+   df.format(dynamicAcc[9])+", "+df.format(dynamicAcc[10])+", "+df.format(dynamicAcc[11])+"\n"
-                                    +"gyr : "+    df.format(gyr[0])+", "+df.format(gyr[1])+", "+df.format(gyr[2])+"\n"
-                    ;
-//                    tv_gravity.setText(textProcessed);
+//                    System.out.println(acc[0]+", "+acc[1]+", "+acc[2]+", "+gyr[0]+", "+gyr[1]+", "+gyr[2]+", "+gravity[0]+", "+gravity[1]+", "+gravity[2]+", ");
+//                    textProcessed =
+//                            "Acc : "+    df.format(dynamicAcc[0])+", "+df.format(dynamicAcc[1])+", "+df.format(dynamicAcc[2])+"\n"
+//                                    +"Vel : "+    df.format(dynamicAcc[3])+", "+df.format(dynamicAcc[4])+", "+df.format(dynamicAcc[5])+"\n"
+//                                    +"Dist : "+   df.format(dynamicAcc[6])+", "+df.format(dynamicAcc[7])+", "+df.format(dynamicAcc[8])+"\n"
+//                                    +"Gra : "+   df.format(dynamicAcc[9])+", "+df.format(dynamicAcc[10])+", "+df.format(dynamicAcc[11])+"\n"
+//                                    +"gyr : "+    df.format(gyr[0])+", "+df.format(gyr[1])+", "+df.format(gyr[2])+"\n"
+//                    ;
+////                    tv_gravity.setText(textProcessed);
 
                 }
             }
